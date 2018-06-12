@@ -6,3 +6,4 @@ authors = ["Matthew Klein <mklein994@gmail.com>"]
 [dependencies]
 darksky = { version = "0.8.1", features = ["reqwest"] }
 dotenv = "0.13.0"
+reqwest = "0.8.6"
