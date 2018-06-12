@@ -7,3 +7,4 @@ authors = ["Matthew Klein <mklein994@gmail.com>"]
 darksky = { version = "0.8.1", features = ["reqwest"] }
 dotenv = "0.13.0"
 reqwest = "0.8.6"
+serde_json = "1.0.20"
