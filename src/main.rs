@@ -1,13 +1,26 @@
+#[macro_use]
+extern crate clap;
 extern crate dotenv;
 extern crate weather_rs;
+
+mod app;
 
 fn main() {
     let (api_key, latitude, longitude) = get_api_params();
 
+    let m = app::build_cli().get_matches();
+
     let weather = weather_rs::get_weather(api_key, latitude, longitude);
 
     match weather {
-        Ok(w) => weather_rs::print_weather(w),
+        Ok(w) => {
+            if m.is_present("json") {
+                let pretty_print = m.value_of("json").is_some();
+                weather_rs::print_json(w, pretty_print)
+            } else {
+                weather_rs::print_weather(w);
+            }
+        }
         Err(err) => eprintln!("{:?}", err),
     }
 }
