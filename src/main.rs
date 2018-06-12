@@ -10,18 +10,16 @@ fn main() {
 
     let m = app::build_cli().get_matches();
 
-    let weather = weather_rs::get_weather(api_key, latitude, longitude);
+    let weather = weather_rs::get_weather(&api_key, latitude, longitude).unwrap_or_else(|e| {
+        eprintln!("{:?}", e);
+        std::process::exit(1);
+    });
 
-    match weather {
-        Ok(w) => {
-            if m.is_present("json") {
-                let pretty_print = m.value_of("json").is_some();
-                weather_rs::print_json(w, pretty_print)
-            } else {
-                weather_rs::print_weather(w);
-            }
-        }
-        Err(err) => eprintln!("{:?}", err),
+    if m.is_present("json") {
+        let pretty_print = m.value_of("json").is_some();
+        weather_rs::print_json(&weather, pretty_print)
+    } else {
+        weather_rs::print_weather(&weather);
     }
 }
 

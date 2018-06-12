@@ -15,4 +15,10 @@ pub fn build_cli() -> App<'static, 'static> {
                 .takes_value(true)
                 .value_name("pretty"),
         )
+        .arg(
+            Arg::with_name("current")
+                .help("Print current conditions")
+                .short("c")
+                .long("current"),
+        )
 }

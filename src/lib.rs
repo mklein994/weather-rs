@@ -7,17 +7,17 @@ use darksky::models::Forecast;
 use darksky::DarkskyReqwestRequester;
 use reqwest::Client;
 
-pub fn get_weather(api_key: String, lat: f64, long: f64) -> Result<Forecast, darksky::Error> {
+pub fn get_weather(api_key: &str, lat: f64, long: f64) -> Result<Forecast, darksky::Error> {
     let client = Client::new();
 
     client.get_forecast(&api_key, lat, long)
 }
 
-pub fn print_weather(weather: Forecast) {
+pub fn print_weather(weather: &Forecast) {
     println!("{:#?}", weather);
 }
 
-pub fn print_json(weather: Forecast, pretty: bool) {
+pub fn print_json(weather: &Forecast, pretty: bool) {
     println!(
         "{}",
         if pretty {
