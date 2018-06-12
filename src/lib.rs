@@ -1,3 +1,4 @@
+extern crate clap;
 extern crate darksky;
 extern crate reqwest;
 
