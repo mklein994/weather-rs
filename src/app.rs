@@ -21,4 +21,10 @@ pub fn build_cli() -> App<'static, 'static> {
                 .short("c")
                 .long("current"),
         )
+        .arg(
+            Arg::with_name("historical")
+                .help("Print historical conditions")
+                .takes_value(true)
+                .long("historical"),
+        )
 }
