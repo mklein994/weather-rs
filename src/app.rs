@@ -7,13 +7,21 @@ pub fn build_cli() -> App<'static, 'static> {
         .arg(
             Arg::with_name("json")
                 .help("Print weather as json")
-                .long_help(
-                    "Takes an argument of 'pretty', which will pretty print the json output.",
-                )
-                .long("json")
-                .min_values(0)
-                .takes_value(true)
-                .value_name("pretty"),
+                .long("json"),
+        )
+        .arg(
+            Arg::with_name("pretty-json")
+                .help("Print weather as json, indented for readability.")
+                .long("pretty-json"),
+        )
+        .arg(
+            Arg::with_name("format")
+                .help("The format the weather will be displayed in.")
+                .short("f")
+                .long("format")
+                .min_values(1)
+                .case_insensitive(true)
+                .possible_values(&OutputStyle::variants()),
         )
         .arg(
             Arg::with_name("current")
@@ -24,7 +32,53 @@ pub fn build_cli() -> App<'static, 'static> {
         .arg(
             Arg::with_name("historical")
                 .help("Print historical conditions")
+                .long("historical")
                 .takes_value(true)
-                .long("historical"),
+                .validator(|time| match time.parse::<u64>() {
+                    Ok(_) => Ok(()),
+                    Err(e) => Err(e.to_string()),
+                }),
         )
+        .arg(
+            Arg::with_name("api_key")
+                .required(true)
+                .env("DARKSKY_API_KEY")
+                .hide_env_values(true),
+        )
+        .arg(
+            Arg::with_name("latitude")
+                .required(true)
+                .env("DARKSKY_LATITUDE")
+                .hide_env_values(true)
+                .validator(validate_coordinate),
+        )
+        .arg(
+            Arg::with_name("longitude")
+                .required(true)
+                .env("DARKSKY_LONGITUDE")
+                .hide_env_values(true)
+                .validator(validate_coordinate),
+        )
+}
+
+fn validate_coordinate(coord: String) -> Result<(), String> {
+    match coord.parse::<f64>() {
+        Ok(_) => Ok(()),
+        Err(e) => Err(e.to_string()),
+    }
+}
+
+arg_enum! {
+#[derive(PartialEq, Debug)]
+    pub enum OutputStyle {
+        Parsed,
+        Json,
+        PrettyJson,
+    }
+}
+
+impl Default for OutputStyle {
+    fn default() -> Self {
+        OutputStyle::Parsed
+    }
 }
