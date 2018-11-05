@@ -1,6 +1,13 @@
 use clap::{App, Arg};
 
 pub fn build_cli() -> App<'static, 'static> {
+    let validate_coordinate = |coord: String| -> Result<(), String> {
+        match coord.parse::<f64>() {
+            Ok(_) => Ok(()),
+            Err(e) => Err(e.to_string()),
+        }
+    };
+
     App::new(crate_name!())
         .version(crate_version!())
         .author(crate_authors!())
@@ -59,15 +66,6 @@ pub fn build_cli() -> App<'static, 'static> {
                 .hide_env_values(true)
                 .validator(validate_coordinate),
         )
-}
-
-// This is the signature used by the validator() function.
-#[allow(clippy::needless_pass_by_value)]
-fn validate_coordinate(coord: String) -> Result<(), String> {
-    match coord.parse::<f64>() {
-        Ok(_) => Ok(()),
-        Err(e) => Err(e.to_string()),
-    }
 }
 
 #[derive(Debug)]
