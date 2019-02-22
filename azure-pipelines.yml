@@ -13,18 +13,13 @@ steps:
   - script: |
       export PATH="~/.cargo/bin:$PATH"
       cargo +nightly-x86_64-unknown-linux-gnu install rustfmt-nightly --force
-      cargo +nightly-x86_64-unknown-linux-gnu fmt -- --write-mode diff
+      cargo +nightly-x86_64-unknown-linux-gnu fmt -- --check
     displayName: Validate Formatting
   - script: |
       export PATH="~/.cargo/bin:$PATH"
-      cargo +nightly-x86_64-unknown-linux-gnu install rustfmt-nightly --force
-      cargo +nightly-x86_64-unknown-linux-gnu fmt -- --write-mode diff
-    displayName: Cargo Check
-  - script: |
-      export PATH="~/.cargo/bin:$PATH"
-      cargo +nightly-x86_64-unknown-linux-gnu test
+      cargo +nightly-x86_64-unknown-linux-gnu test --verbose
     displayName: Run Tests
   - script: |
       export PATH="~/.cargo/bin:$PATH"
-      cargo +nightly-x86_64-unknown-linux-gnu build --release
+      cargo +nightly-x86_64-unknown-linux-gnu build --release --verbose
     displayName: Build Release
