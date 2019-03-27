@@ -217,7 +217,7 @@ dependencies = [
 [[package]]
 name = "darksky"
 version = "0.8.1"
-source = "git+https://github.com/zeyla/darksky.rs?rev=12685a4e#12685a4e052f33c5d97cf7328579c5468ef53c9e"
+source = "git+https://github.com/rusty-crates/darksky.rs?rev=12685a4e#12685a4e052f33c5d97cf7328579c5468ef53c9e"
 dependencies = [
  "reqwest 0.9.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.88 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1286,7 +1286,7 @@ name = "weather-rs"
 version = "0.1.0"
 dependencies = [
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "darksky 0.8.1 (git+https://github.com/zeyla/darksky.rs?rev=12685a4e)",
+ "darksky 0.8.1 (git+https://github.com/rusty-crates/darksky.rs?rev=12685a4e)",
  "dotenv 0.13.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "reqwest 0.9.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.38 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1356,7 +1356,7 @@ dependencies = [
 "checksum crossbeam-deque 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)" = "05e44b8cf3e1a625844d1750e1f7820da46044ff6d28f4d43e455ba3e5bb2c13"
 "checksum crossbeam-epoch 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)" = "04c9e3102cc2d69cd681412141b390abd55a362afc1540965dad0ad4d34280b4"
 "checksum crossbeam-utils 0.6.5 (registry+https://github.com/rust-lang/crates.io-index)" = "f8306fcef4a7b563b76b7dd949ca48f52bc1141aa067d2ea09565f3e2652aa5c"
-"checksum darksky 0.8.1 (git+https://github.com/zeyla/darksky.rs?rev=12685a4e)" = "<none>"
+"checksum darksky 0.8.1 (git+https://github.com/rusty-crates/darksky.rs?rev=12685a4e)" = "<none>"
 "checksum dotenv 0.13.0 (registry+https://github.com/rust-lang/crates.io-index)" = "c0d0a1279c96732bc6800ce6337b6a614697b0e74ae058dc03c62ebeb78b4d86"
 "checksum dtoa 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)" = "6d301140eb411af13d3115f9a562c85cc6b541ade9dfa314132244aaee7489dd"
 "checksum encoding_rs 0.8.16 (registry+https://github.com/rust-lang/crates.io-index)" = "0535f350c60aac0b87ccf28319abc749391e912192255b0c00a2c12c6917bd73"
